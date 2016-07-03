@@ -1,0 +1,33 @@
+{
+  "name": "msgp",
+  "description": "Byte message protocol for Node.js",
+  "authors": [
+    "Yan Qing <admin@zensh.com>"
+  ],
+  "version": "0.0.1",
+  "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:zensh/msgp-node.git"
+  },
+  "homepage": "https://github.com/zensh/msgp-node",
+  "keywords": [
+    "message",
+    "byte",
+    "pipelining",
+    "Protocol",
+    "stream"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "standard": "^7.1.2",
+    "tman": "^1.0.0"
+  },
+  "scripts": {
+    "test": "standard && tman"
+  },
+  "files": [
+    "README.md",
+    "lib"
+  ]
+}
