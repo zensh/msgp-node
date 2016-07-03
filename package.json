@@ -4,11 +4,14 @@
   "authors": [
     "Yan Qing <admin@zensh.com>"
   ],
-  "version": "0.0.1",
+  "version": "0.1.0",
   "main": "lib/index.js",
   "repository": {
     "type": "git",
     "url": "git@github.com:zensh/msgp-node.git"
+  },
+  "engines": {
+    "node": ">=4"
   },
   "homepage": "https://github.com/zensh/msgp-node",
   "keywords": [
