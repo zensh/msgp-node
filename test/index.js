@@ -202,10 +202,82 @@ tman.suite('Class Msgp', function () {
         done()
       })
 
-    let buf = Buffer.concat([encodeJSON('中文'), encodeJSON(''), encodeJSON(123)])
+    let buf = Buffer.concat([
+      encodeJSON('中文'),
+      encodeJSON(''),
+      encodeJSON(123)
+    ])
     msgp.write(buf.slice(0, 3))
     msgp.write(buf.slice(3, 7))
     msgp.write(buf.slice(7))
     msgp.end()
+  })
+
+  tman.it('new Msgp(): with error buffer', function (done) {
+    let result = []
+    let msgp = new Msgp()
+
+    msgp
+      .on('data', (buf) => {
+        result.push(decodeJSON(buf))
+      })
+      .on('error', function (error) {
+        assert.strictEqual(error instanceof Error, true)
+        result.push('')
+        msgp.end()
+      })
+      .on('finish', function () {
+        assert.deepEqual(result, ['中文', '123', ''])
+        done()
+      })
+
+    let buf = Buffer.concat([
+      encodeJSON('中文'),
+      encodeJSON('123'),
+      createBuf([0xff, 0xff, 0xff, 0x80])
+    ])
+    msgp.write(buf.slice(0, 3))
+    msgp.write(buf.slice(3, 7))
+    msgp.write(buf.slice(7))
+  })
+
+  tman.it('new Msgp(): chaos', function (done) {
+    this.timeout(100000)
+
+    let result = []
+    let msgp = new Msgp()
+    let val = [
+      null,
+      'OKOKOKOK',
+      123456789,
+      'message',
+      'buf',
+      ['set', 'key', '123正正abc']
+    ]
+    let bufs = []
+    for (let i = 0; i < 10000; i++) bufs.push(encodeJSON(val))
+    bufs = Buffer.concat(bufs)
+
+    msgp
+      .on('data', function (buf) {
+        let data = decodeJSON(buf)
+        assert.deepEqual(data, val)
+        result.push(data)
+      })
+      .on('finish', function () {
+        assert.strictEqual(result.length, 10000)
+        done()
+      })
+
+    let start = 0
+    consumer()
+    function consumer () {
+      if (start >= bufs.length) return msgp.end()
+      let end = start + Math.ceil(Math.random() * 100)
+      if (end > bufs.length) end = bufs.length
+      msgp.write(bufs.slice(start, end))
+      start = end
+      setTimeout(consumer, 0)
+    }
   })
 })
