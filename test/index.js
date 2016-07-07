@@ -16,6 +16,10 @@ tman.suite('Msgp.encode(buffer)', function () {
     assert.throws(() => Msgp.encode({}), TypeError)
   })
 
+  tman.it('should encode string', function () {
+    assert.ok(Msgp.encode('abcd').equals(createBuf([0x4, 0x61, 0x62, 0x63, 0x64])))
+  })
+
   tman.it('should ok when buffer.length === 0', function () {
     assert.ok(Msgp.encode(createBuf([])).equals(createBuf([0x0])))
   })
