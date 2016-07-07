@@ -7,6 +7,13 @@ const cycles = 5
 
 const jsbench = new JSBench()
 
+jsbench
+  .add('Msgp', require('./msgp.js')(len))
+  .add('amp', require('./amp.js')(len))
+  .add('resp', require('./resp.js')(len))
+  // on('cycle', function(e) {console.log(e.name, e.cycle, e.time + 'ms')}).
+  .run(cycles)
+
 // JSBench Start, 5 cycles:
 // Test Msgp...
 // 23437.50 kb 568504.83 ops
@@ -35,10 +42,3 @@ const jsbench = new JSBench()
 // amp: 100%; Msgp: 247.07%; resp: 280.15%;
 //
 // JSBench Completed!
-
-jsbench
-  .add('Msgp', require('./msgp.js')(len))
-  .add('amp', require('./amp.js')(len))
-  .add('resp', require('./resp.js')(len))
-  // on('cycle', function(e) {console.log(e.name, e.cycle, e.time + 'ms')}).
-  .run(cycles)

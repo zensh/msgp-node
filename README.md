@@ -13,6 +13,13 @@ Byte message protocol for Node.js.
 ![Byte message protocol](https://raw.githubusercontent.com/zensh/msgp-node/master/msgp.png)
 
 ## Bench
+### [1000000 simple messages, amp vs msgp vs resp](https://github.com/zensh/msgp-node/tree/master/bench)
+
+- Mspg: **23437.50 kb 561797.75 ops**
+- Amp: **27343.75 kb 212585.03 ops**
+- resp: **29296.88 kb 641848.52 ops**
+
+**Amp: 100%; Msgp: 259.64%; Resp: 283.72%**
 
 ## API
 
