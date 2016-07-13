@@ -95,7 +95,10 @@ tman.suite('Msgp.decode(buffer)', function () {
     assert.throws(() => Msgp.decode(null), TypeError)
     assert.throws(() => Msgp.decode(1), TypeError)
     assert.throws(() => Msgp.decode({}), TypeError)
-    assert.throws(() => Msgp.decode(createBuf([])), Error)
+  })
+
+  tman.it('should return null when buffer invaid', function () {
+    assert.strictEqual(Msgp.decode(createBuf([])), null)
   })
 
   tman.it('should ok when buffer.length === 0', function () {
@@ -150,19 +153,15 @@ tman.suite('Msgp.decode(buffer)', function () {
     assert.ok(res.equals(allocBuffer(268435455).fill('a')))
   })
 
-  tman.it('should throw Error when buffer.length >= 268435456', function () {
-    let buf = Buffer.concat([createBuf([0xff, 0xff, 0xff, 0x7f]),
+  tman.it('should return null when buffer.length >= 268435456', function () {
+    let buf = Buffer.concat([createBuf([0x81, 0x80, 0x80, 0x80, 0x00]),
       allocBuffer(268435456).fill('a')])
-    assert.throws(() => Msgp.decode(buf), Error)
-
-    buf = Buffer.concat([createBuf([0x81, 0x80, 0x80, 0x80, 0x00]),
-      allocBuffer(268435456).fill('a')])
-    assert.throws(() => Msgp.decode(buf), RangeError)
+    assert.strictEqual(Msgp.decode(buf), null)
   })
 
-  tman.it('should throw Error when valid buffer', function () {
-    let buf = Buffer.concat([createBuf([0x81]), allocBuffer(16383).fill('a')])
-    assert.throws(() => Msgp.decode(buf), Error)
+  tman.it('should ok when buffer include message', function () {
+    let buf = Buffer.concat([createBuf([0x01]), allocBuffer(16383).fill('a')])
+    assert.ok(createBuf([0x61]).equals(Msgp.decode(buf)))
   })
 })
 
