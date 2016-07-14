@@ -16,29 +16,29 @@ jsbench
 
 // JSBench Start, 5 cycles:
 // Test Msgp...
-// 23437.50 kb 568504.83 ops
-// 23437.50 kb 498753.12 ops
-// 23437.50 kb 579038.80 ops
-// 23437.50 kb 588235.29 ops
-// 23437.50 kb 582750.58 ops
+// 23437.50 kb 632911.39 ops
+// 23437.50 kb 546448.09 ops
+// 23437.50 kb 661813.37 ops
+// 23437.50 kb 611620.80 ops
+// 23437.50 kb 623441.40 ops
 // Test amp...
-// 27343.75 kb 223313.98 ops
-// 27343.75 kb 226963.23 ops
-// 27343.75 kb 228937.73 ops
-// 27343.75 kb 224466.89 ops
-// 27343.75 kb 232180.17 ops
+// 27343.75 kb 212811.24 ops
+// 27343.75 kb 205212.39 ops
+// 27343.75 kb 222222.22 ops
+// 27343.75 kb 216872.70 ops
+// 27343.75 kb 222419.93 ops
 // Test resp...
-// 29296.88 kb 669792.36 ops
-// 29296.88 kb 589275.19 ops
-// 29296.88 kb 659195.78 ops
-// 29296.88 kb 657462.20 ops
-// 29296.88 kb 613873.54 ops
+// 29296.88 kb 574382.54 ops
+// 29296.88 kb 643086.82 ops
+// 29296.88 kb 646412.41 ops
+// 29296.88 kb 547345.37 ops
+// 29296.88 kb 603500.30 ops
 //
 // JSBench Results:
-// amp: 5 cycles, 4402.8 ms/cycle, 0.227 ops/sec
-// Msgp: 5 cycles, 1782 ms/cycle, 0.561 ops/sec
-// resp: 5 cycles, 1571.6 ms/cycle, 0.636 ops/sec
+// amp: 5 cycles, 4636.2 ms/cycle, 0.216 ops/sec
+// resp: 5 cycles, 1666 ms/cycle, 0.600 ops/sec
+// Msgp: 5 cycles, 1632.4 ms/cycle, 0.613 ops/sec
 //
-// amp: 100%; Msgp: 247.07%; resp: 280.15%;
+// amp: 100%; resp: 278.28%; Msgp: 284.01%;
 //
 // JSBench Completed!

@@ -15,11 +15,9 @@ Byte message protocol for Node.js.
 ## Bench
 ### [1000000 simple messages, amp vs msgp vs resp](https://github.com/zensh/msgp-node/tree/master/bench)
 
-- Mspg: **23437.50 kb 561797.75 ops**
-- Amp: **27343.75 kb 212585.03 ops**
-- resp: **29296.88 kb 641848.52 ops**
-
-**Amp: 100%; Msgp: 259.64%; Resp: 283.72%**
+1. Mspg: **23437.50 kb 661813.37 ops**
+2. resp: **29296.88 kb 646412.41 ops**
+3. Amp: **27343.75 kb 222419.93 ops**
 
 ## API
 
