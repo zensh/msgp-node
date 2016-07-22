@@ -1,10 +1,10 @@
 {
   "name": "msgp",
-  "description": "Byte message protocol for Node.js",
+  "description": "Byte message protocol and streaming parser for Node.js.",
   "authors": [
     "Yan Qing <admin@zensh.com>"
   ],
-  "version": "0.3.0",
+  "version": "1.0.0",
   "main": "lib/index.js",
   "repository": {
     "type": "git",

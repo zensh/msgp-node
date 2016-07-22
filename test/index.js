@@ -192,6 +192,13 @@ tman.suite('Class Msgp', function () {
     msgp.end()
   })
 
+  tman.it('new Msgp(): emit "null"', function (done) {
+    let msgp = new Msgp()
+
+    msgp.on('null', done)
+    msgp.write(new Buffer([0]))
+  })
+
   tman.it('new Msgp(): Pipelining data', function (done) {
     let result = []
     let msgp = new Msgp()

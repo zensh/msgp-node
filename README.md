@@ -1,6 +1,6 @@
 MSGP
 ====
-Byte message protocol for Node.js.
+Byte message protocol and streaming parser for Node.js.
 
 [![NPM version][npm-image]][npm-url]
 [![Build Status][travis-image]][travis-url]
@@ -27,10 +27,14 @@ const Msgp = require('msgp')
 
 ### Class Msgp
 #### new Msgp()
-Create a writeable like stream.
+Create a writeable like stream parser.
 
 ```js
 const msgp = new Msgp()
+msgp.on('data', function (data) {
+  console.log(data.toString())
+})
+someSocketStream.pipe(msgp)
 ```
 
 #### msgp.write(buffer)
@@ -54,7 +58,21 @@ msgp.on('data', (buffer) => {
 
 ### Class Method: Msgp.encode(string)
 ### Class Method: Msgp.encode(buffer)
+Encode string or buffer to buffer packet.
+
+```js
+Msgp.encode(JSON.stringify({name: 'msgp'}))
+// result: <Buffer 0f 7b 22 6e 61 6d 65 22 3a 22 6d 73 67 70 22 7d>
+```
+
 ### Class Method: Msgp.decode(buffer)
+Decode buffer packet to message buffer.
+
+```js
+let buf = new Buffer([0x0f, 0x7b, 0x22, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0x3a, 0x22, 0x6d, 0x73, 0x67, 0x70, 0x22, 0x7d])
+JSON.parse(Msgp.decode(buf))
+// result: {name: 'msgp'}
+```
 
 ## License
 
